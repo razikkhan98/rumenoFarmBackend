@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
   },
   uID: {
     type: Number,
-    required: true,
+    // required: true,
   }
 
 });
