@@ -1,5 +1,5 @@
 import express from "express";
-import { usercontroller } from "../controller/user/User.js";
+import { UserRegistration } from "../controller/user/User.js";
 import { fileParser } from "../controller/transactionController.js";
 import transactionModel from "../model/transactionModel.js";
 import { createProductFeedback } from "../controller/user/productFeedbackController.js";
@@ -8,13 +8,20 @@ import { createContactUs } from "../controller/user/contactController.js";
 import { createBlog } from "../controller/user/blogController.js";
 import { createTransactionIssue } from "../controller/user/transactionIssueController.js";
 import { createAddToCart } from "../controller/user/addToCartController.js";
+import { UserLogin } from "../controller/user/loginController.js";
 
 const UserRouter = express.Router();
 
 // User Registration
 
-const UserController = new usercontroller();
-UserRouter.post("/user/register", UserController.UserRegistration);
+UserRouter.post("/user/register", UserRegistration);
+
+// User Login
+
+UserRouter.post("/user/login", UserLogin);
+
+
+
 
 // Transaction Route
 UserRouter.post("/post", fileParser, async (req, res) => {

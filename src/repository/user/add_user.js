@@ -4,7 +4,6 @@ import bcrypt from 'bcrypt'
 export const addUser = async (data) => {
     try {
         const check_user = await UserModel.findOne({ email: data.email })
-        console.log("check",check_user)
         if (!check_user) {
             data.password = await bcrypt.hash(data.password, 10)
             const userdata = UserModel(data)
