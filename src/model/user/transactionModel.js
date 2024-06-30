@@ -3,15 +3,15 @@ import mongoose from 'mongoose';
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    // required: true
   },
   mobileNumber: {
     type: String,
-    required: true
+    // required: true
   },
   address: {
     type: String,
-    required: true
+    // required: true
   },
   amount: {
     type: String,
@@ -19,20 +19,22 @@ const UserSchema = new mongoose.Schema({
   },
   transactionID: {
     type: String,
-    required: true
+    // required: true
   },
   paymode: {
     type: String,
+    // required: true
   
   },
   cod_payment: {
-    type: String
-    
+    type: String,
+    // required: true
   },
   image:{
-    data:Buffer,
-    contentType:String
-  }
+    type: String,
+    // required: true
+  },
+ 
 });
 
-export default mongoose.model('Transaction', UserSchema);
+export default mongoose.model("Transaction", UserSchema);

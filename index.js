@@ -12,6 +12,7 @@ Dbconnection();
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/api',UserRouter);
+app.use(express.urlencoded({extended:false}))
 
 
 app.listen(process.env.PORT || 8000, () => {
