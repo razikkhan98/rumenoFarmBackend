@@ -1,4 +1,4 @@
-import { UserModel } from "../../model/user/User.js"
+import { UserModel } from "../../model/user/user.js"
 import bcrypt from 'bcrypt'
 
 export const addUser = async (data) => {

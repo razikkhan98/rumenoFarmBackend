@@ -1,5 +1,5 @@
 import express from "express";
-import { UserRegistration } from "../controller/user/User.js";
+import { UserRegistration } from "../controller/user/user.js";
 import { fileParser } from "../controller/transactionController.js";
 import transactionModel from "../model/transactionModel.js";
 import { createProductFeedback } from "../controller/user/productFeedbackController.js";
@@ -19,8 +19,6 @@ UserRouter.post("/user/register", UserRegistration);
 // User Login
 
 UserRouter.post("/user/login", UserLogin);
-
-
 
 
 // Transaction Route
