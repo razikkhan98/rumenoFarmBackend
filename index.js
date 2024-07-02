@@ -7,7 +7,6 @@ import cors from "cors";
 
 
 const app = express();
-const PORT = 5005;
 
 Dbconnection();
 app.use(bodyParser.json());
@@ -16,6 +15,6 @@ app.use('/api',UserRouter);
 app.use(express.urlencoded({extended:true}))
 
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(process.env.PORT || 8000, () => {
+    console.log(`Server is running on http://localhost:${process.env.PORT}`);
 })
