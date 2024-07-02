@@ -7,13 +7,13 @@ import cors from "cors";
 
 
 const app = express();
-const PORT = 5000;
+const PORT = 5005;
 
 Dbconnection();
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/api',UserRouter);
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended:true}))
 
 
 app.listen(PORT, () => {

@@ -14,7 +14,7 @@ export const loginUser = async (data) => {
       const result = await bcrypt.compare(data?.password, user?.password);
       if (result) {
         // generate a token
-        const token = jwt.sign({ userId: user._id }, "your_jwt_secret", {
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
           expiresIn: "1h",
         });
 
@@ -22,8 +22,18 @@ export const loginUser = async (data) => {
           status: 200,
           message: "Login Successful",
           token: token,
-          uId: user?._id,
-          name: user?.name,
+          uID: user?._id,
+          // name: user?.name,
+          // ----------NEW ADD
+          name: 'admin',
+          date: '7/7/2027',
+          // msg:"Success",
+          userName:"admin",
+          FarmName:"panel",
+          pID:"",
+          // uID: "7",
+          rId: "rId",
+          sessionId: "sessionId"
         };
       } else {
         return { status: 400, message: "password doesn't match" };

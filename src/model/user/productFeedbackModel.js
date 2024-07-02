@@ -11,8 +11,8 @@ const UserSchema = new mongoose.Schema(
       required: true,
     },
 
-    user_id: {
-      type: Number,
+    uid: {
+      type: String,
     },
   },
   { timestamps: true }
