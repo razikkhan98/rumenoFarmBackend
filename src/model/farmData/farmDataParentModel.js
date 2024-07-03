@@ -10,6 +10,9 @@ const UserSchema = new mongoose.Schema({
   age: {
     type: String,
   },
+  animal: {
+    type: String,
+  },
   height: {
     type: String,
   },

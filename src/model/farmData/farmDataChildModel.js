@@ -7,6 +7,9 @@ const UserSchema = new mongoose.Schema({
   parentid: {
     type: String,
   },
+  animal: {
+    type: String,
+  },
   age: {
     type: String,
   },

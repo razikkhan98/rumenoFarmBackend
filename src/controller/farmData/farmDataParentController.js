@@ -11,9 +11,10 @@ export const createParent = async (req, res) => {
 };
 
 export const getParent = async (req, res) => {
+  console.log('req: ', req.query.name);
   try {
-    const parentData = await Parent.find({ uid: req.params.id });
-    const childData = await Child.find({ uid: req.params.id });
+    const parentData = await Parent.find({ uid: req.params.id,animal:req.query.name });
+    const childData = await Child.find({ uid: req.params.id,animal:req.query.name });
     const user = parentData.concat(childData);
     res.send(user);
   } catch (error) {

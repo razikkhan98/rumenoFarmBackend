@@ -1,7 +1,6 @@
 import AddToCart from "../../model/user/addToCartModel.js";
 
 export const createAddToCart = async (req, res) => {
-  console.log("req: ", req.body);
   try {
     let item = await AddToCart.findOne({id:req.body.id});
     if (item) {
@@ -18,11 +17,18 @@ export const createAddToCart = async (req, res) => {
   }
 };
 
+export const getAddToCart = async (data) => {
+  try {
+    const user = await AddToCart.find({uid:data});
+    return user;
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
 export const deleteAddToCart = async (req, res) => {
-    console.log("req: ", req.params);
     try {
-    let cek =  await AddToCart.deleteOne({id:Number(req.params.id)});
-    console.log('cek: ', cek);
+    let data =  await AddToCart.deleteOne({id:Number(req.params.id)});
     res.status(200).send("success");
     } catch (error) {
       console.log("error: ", error);

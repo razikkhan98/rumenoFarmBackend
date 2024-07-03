@@ -9,8 +9,8 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  uID: {
-    type: Number,
+  uid: {
+    type: String,
     // required: true,
   }
 
