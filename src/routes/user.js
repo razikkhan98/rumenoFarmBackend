@@ -19,7 +19,9 @@ import { createDeworm, deleteDeworm, getDeworm, updateDeworm } from "../controll
 import { createHeat, deleteHeat, getHeat, updateHeat } from "../controller/farmData/farmDataHeatController.js";
 import { createSanitation, deleteSanitation, getSanitation, updateSanitation } from "../controller/farmData/farmDataSanitationController.js";
 import { createWean, deleteWean, getWean, updateWean } from "../controller/farmData/farmDataWeanController.js";
+import { createFarmerDetail } from "../controller/farmData/FarmerDetailController.js";
 import verifyToken from "../../src/middleware/user/verifyToken.js";
+import { forgetPassword } from "../controller/user/forgotPasswordController.js";
 
 
 const UserRouter = express.Router();
@@ -31,6 +33,7 @@ UserRouter.post("/user/register", UserRegistration);
 // User Login
 
 UserRouter.post("/user/login", UserLogin);
+UserRouter.post("/user/forgot_password", forgetPassword);
 
 
 // Transaction Route
@@ -55,8 +58,11 @@ UserRouter.post("/user/blog", verifyToken, createBlog);
 // Transaction Issue Route
 UserRouter.post("/user/transaction_issue", verifyToken, createTransactionIssue);
 
+// Farmer Details Route
+UserRouter.post("/user/farmer_detail", verifyToken, createFarmerDetail);
+
 // Add to Cart Route
-UserRouter.post("/user/cart", verifyToken, createAddToCart);
+UserRouter.post("/user/cart/", verifyToken, createAddToCart);
 UserRouter.delete("/user/cart/:id", verifyToken,deleteAddToCart);
 
 // Animal Farm Data Route
