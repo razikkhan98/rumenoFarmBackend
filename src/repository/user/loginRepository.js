@@ -19,13 +19,10 @@ export const loginUser = async (data) => {
       if (result) {
         // generate a token
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-          expiresIn: "1h",
+          expiresIn: "3 day",
         });
         const getFarmerDetailData = await getFarmerDetail(user._id)
         const getAddToCartData = await getAddToCart(user._id)
-      
-
-        getAddToCart
 
         return {
           status: 200,

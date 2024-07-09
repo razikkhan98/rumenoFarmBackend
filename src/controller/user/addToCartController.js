@@ -35,3 +35,13 @@ export const deleteAddToCart = async (req, res) => {
       res.status(400).send(error.message);
     }
 }
+export const deleteAfterTransaction = async (data) => {
+  try {
+  let dataRemove =  await AddToCart.deleteMany({uid:data});
+  console.log('dataRemove: ', dataRemove);
+  console.log("Previous Product Remove Success");
+  } catch (error) {
+    console.log("error: ", error);
+    res.status(400).send(error.message);
+  }
+}
