@@ -19,19 +19,21 @@ import { createWean, deleteWean, getWean, updateWean } from "../controller/farmD
 import { createFarmerDetail } from "../controller/farmData/FarmerDetailController.js";
 import verifyToken from "../../src/middleware/user/verifyToken.js";
 import { forgetPassword } from "../controller/user/forgotPasswordController.js";
+import { sendOtp,verifyOtp } from "../controller/user/optController.js";
 
 
 const UserRouter = express.Router();
 
 // User Registration
-
 UserRouter.post("/user/register", UserRegistration);
 
 // User Login
-
 UserRouter.post("/user/login", UserLogin);
 UserRouter.post("/user/forgot_password", forgetPassword);
 
+// User OPT Vefication
+UserRouter.post("/user/send_otp", sendOtp);
+UserRouter.post("/user/verify_otp", verifyOtp);
 
 // Transaction Route
 UserRouter.post('/user/transaction',verifyToken, createTransaction);

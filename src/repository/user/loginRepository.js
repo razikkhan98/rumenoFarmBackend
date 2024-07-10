@@ -1,7 +1,6 @@
 import { UserModel } from "../../model/user/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import FarmerDetail from '../../model/farmData/FarmerDetailModel.js'
 import { getFarmerDetail } from "../../controller/farmData/FarmerDetailController.js";
 import { getAddToCart } from "../../controller/user/addToCartController.js";
 

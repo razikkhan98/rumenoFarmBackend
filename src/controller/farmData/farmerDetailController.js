@@ -14,7 +14,6 @@ export const getFarmerDetail = async (data) => {
     const user = await FarmerDetail.findOne({uid:data});
     return user.name
   } catch (error) {
-    res.status(500).send(error.message);
   }
 };
 
