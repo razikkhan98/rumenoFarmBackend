@@ -16,7 +16,7 @@ import { createDeworm, deleteDeworm, getDeworm, updateDeworm } from "../controll
 import { createHeat, deleteHeat, getHeat, updateHeat } from "../controller/farmData/farmDataHeatController.js";
 import { createSanitation, deleteSanitation, getSanitation, updateSanitation } from "../controller/farmData/farmDataSanitationController.js";
 import { createWean, deleteWean, getWean, updateWean } from "../controller/farmData/farmDataWeanController.js";
-import { createFarmerDetail } from "../controller/farmData/FarmerDetailController.js";
+import { createFarmerDetail } from "../controller/farmData/farmerDetailController.js";
 import verifyToken from "../../src/middleware/user/verifyToken.js";
 import { forgetPassword } from "../controller/user/forgotPasswordController.js";
 import { sendOtp,verifyOtp } from "../controller/user/optController.js";

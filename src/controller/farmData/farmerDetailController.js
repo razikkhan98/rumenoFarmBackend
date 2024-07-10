@@ -1,4 +1,4 @@
-import FarmerDetail from '../../model/farmData/FarmerDetailModel.js'
+import FarmerDetail from '../../model/farmData/farmerDetailModel.js'
 
 export const createFarmerDetail = async (req, res) => {
   try {
