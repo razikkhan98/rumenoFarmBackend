@@ -63,7 +63,13 @@ import verifyToken from "../../src/middleware/user/verifyToken.js";
 import { forgetPassword } from "../controller/user/forgotPasswordController.js";
 import { sendOtp, verifyOtp } from "../controller/user/optController.js";
 import { UserLogin } from "../controller/user/LoginController.js";
-import { createProduct } from "../controller/admin/adminController.js";
+import {
+  createProduct,
+  deleteProduct,
+  getAllProduct,
+  getProductById,
+  updateProduct,
+} from "../controller/admin/adminController.js";
 
 const UserRouter = express.Router();
 
@@ -158,6 +164,10 @@ UserRouter.delete("/user/farm_data/wean/:id", verifyToken, deleteWean);
 
 /** Admin Routes */
 
-UserRouter.use("/admin", createProduct);
+UserRouter.post("/admin/create_product", createProduct);
+UserRouter.get("/admin/get_all_product", getAllProduct);
+UserRouter.get("/admin/get_product/:id", getProductById);
+UserRouter.put("/admin/update_product/:id", updateProduct);
+UserRouter.delete("/admin/delete_product/:id", deleteProduct);
 
 export default UserRouter;
