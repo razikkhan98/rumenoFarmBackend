@@ -23,7 +23,24 @@ let adminUser = {
 const seed = async () => {
   console.log("Seeding started.....");
   const permission = await Permission?.create(permissions);
+
+  // console.log("Permissions created!");
+
   const role = await Role?.create(roles);
+  // console.log("Roles created!");
+
+  // roles.find((r) => r.roleName === "Super Admin").permissions = permission.map(
+  //   (p) => p._id
+  // );
+
+  // const sAdmin = role.find((r) => r.roleName === "Super Admin");
+  // adminUser.role = sAdmin._id;
+
+  // await User.create(adminUser);
+  // console.log("Super Admin created!");
+
+  // await Country.insertMany(COUNTRIES);
+  // console.log("Countries created!");
 };
 
 export { seed };
