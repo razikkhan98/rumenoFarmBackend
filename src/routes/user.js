@@ -1,5 +1,5 @@
 import express from "express";
-import { UserRegistration } from "../controller/user/User.js";
+import { UserRegistration } from "../controller/user/user.js";
 import { createProductFeedback } from "../controller/user/productFeedbackController.js";
 import { createServiceForm } from "../controller/user/serviceFormController.js";
 import { createContactUs } from "../controller/user/contactController.js";
@@ -162,12 +162,18 @@ UserRouter.get("/user/farm_data/wean/:id", verifyToken, getWean);
 UserRouter.put("/user/farm_data/wean/:id", verifyToken, updateWean);
 UserRouter.delete("/user/farm_data/wean/:id", verifyToken, deleteWean);
 
-/** Admin Routes */
-
+/** Admin Products Routes */
 UserRouter.post("/admin/create_product", createProduct);
 UserRouter.get("/admin/get_all_product", getAllProduct);
 UserRouter.get("/admin/get_product/:id", getProductById);
 UserRouter.put("/admin/update_product/:id", updateProduct);
 UserRouter.delete("/admin/delete_product/:id", deleteProduct);
+
+/** Admin Blog Routes */
+UserRouter.post("/admin/create_blog", createProduct);
+UserRouter.get("/admin/get_all_blog", getAllProduct);
+UserRouter.get("/admin/get_blog/:id", getProductById);
+UserRouter.put("/admin/update_blog/:id", updateProduct);
+UserRouter.delete("/admin/delete_blog/:id", deleteProduct);
 
 export default UserRouter;
