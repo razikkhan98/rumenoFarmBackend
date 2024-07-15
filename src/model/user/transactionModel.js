@@ -5,6 +5,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     // required: true
   },
+  uid: {
+    type: String,
+    // required: true
+  },
   mobileNumber: {
     type: String,
     // required: true
@@ -14,7 +18,8 @@ const UserSchema = new mongoose.Schema({
     // required: true
   },
   amount: {
-    type: String,
+    type: Number,
+    // required: true
     
   },
   transactionID: {
@@ -31,10 +36,13 @@ const UserSchema = new mongoose.Schema({
     // required: true
   },
   image:{
-    data: Buffer,
-     contentType: String
+    type: String,
     // required: true
   },
+  cart:{
+    type: Array,
+    // required: true
+  }
  
 });
 
