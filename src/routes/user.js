@@ -3,7 +3,6 @@ import { UserRegistration } from "../controller/user/user.js";
 import { createProductFeedback } from "../controller/user/productFeedbackController.js";
 import { createServiceForm } from "../controller/user/serviceFormController.js";
 import { createContactUs } from "../controller/user/contactController.js";
-import { createBlog } from "../controller/user/blogController.js";
 import { createTransactionIssue } from "../controller/user/transactionIssueController.js";
 import {
   createAddToCart,
@@ -70,6 +69,13 @@ import {
   getProductById,
   updateProduct,
 } from "../controller/admin/adminController.js";
+import {
+  createBlog,
+  deleteBlog,
+  getAllBlog,
+  getBlogById,
+  updateBlog,
+} from "../controller/admin/adminBlogController.js";
 
 const UserRouter = express.Router();
 
@@ -170,10 +176,10 @@ UserRouter.put("/admin/update_product/:id", updateProduct);
 UserRouter.delete("/admin/delete_product/:id", deleteProduct);
 
 /** Admin Blog Routes */
-UserRouter.post("/admin/create_blog", createProduct);
-UserRouter.get("/admin/get_all_blog", getAllProduct);
-UserRouter.get("/admin/get_blog/:id", getProductById);
-UserRouter.put("/admin/update_blog/:id", updateProduct);
-UserRouter.delete("/admin/delete_blog/:id", deleteProduct);
+UserRouter.post("/admin/create_blog", createBlog);
+UserRouter.get("/admin/get_all_blog", getAllBlog);
+UserRouter.get("/admin/get_blog/:id", getBlogById);
+UserRouter.put("/admin/update_blog/:id", updateBlog);
+UserRouter.delete("/admin/delete_blog/:id", deleteBlog);
 
 export default UserRouter;

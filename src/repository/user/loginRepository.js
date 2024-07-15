@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 import { getFarmerDetail } from "../../controller/farmData/farmerDetailController.js";
 import { getAddToCart } from "../../controller/user/addToCartController.js";
 
-
 export const loginUser = async (data) => {
   try {
     // check if the user exists
@@ -17,11 +16,16 @@ export const loginUser = async (data) => {
       const result = await bcrypt.compare(data?.password, user?.password);
       if (result) {
         // generate a token
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-          expiresIn: "3 day",
-        });
-        const getFarmerDetailData = await getFarmerDetail(user._id)
-        const getAddToCartData = await getAddToCart(user._id)
+        const token = jwt.sign(
+          { userId: user._id },
+          process.env.JWT_SECRET ||
+            "e1569743aa91c36993cd6a679115e601b3e7423515c29bee6eec33ad5aa0138d5",
+          {
+            expiresIn: "15 day",
+          }
+        );
+        const getFarmerDetailData = await getFarmerDetail(user._id);
+        const getAddToCartData = await getAddToCart(user._id);
 
         return {
           status: 200,
@@ -30,11 +34,11 @@ export const loginUser = async (data) => {
           uID: user?._id,
           userName: user?.fullName,
           // ----------NEW ADD
-          date: '7/7/2027',
-          FarmName:getFarmerDetailData,
-          pID:getAddToCartData,
+          date: "7/7/2027",
+          FarmName: getFarmerDetailData,
+          pID: getAddToCartData,
           rId: "rId",
-          sessionId: "sessionId"
+          sessionId: "sessionId",
         };
       } else {
         return { status: 400, message: "password doesn't match" };
