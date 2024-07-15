@@ -9,8 +9,8 @@ const UserSchema = mongoose.Schema({
   city: { type: String, required: true },
   state: { type: String, required: true },
   country: { type: String, required: true },
-
-  role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
+  role: { type: String, default: "" },
+  // role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
 });
 
 export const UserModel = mongoose.model("User", UserSchema);
