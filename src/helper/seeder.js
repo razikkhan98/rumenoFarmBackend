@@ -1,5 +1,5 @@
-import { Permission } from "../model/user/permission";
-import { Role } from "../model/user/role";
+import { Permission } from "../model/user/permission.js";
+import { Role } from "../model/user/role.js";
 
 const permissions = [
   { name: "Ticket Read", alias: "ticket_read" },
