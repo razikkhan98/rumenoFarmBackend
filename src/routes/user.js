@@ -20,6 +20,7 @@ import { createFarmerDetail } from "../controller/farmData/farmerDetailControlle
 import verifyToken from "../../src/middleware/user/verifyToken.js";
 import { forgetPassword } from "../controller/user/forgotPasswordController.js";
 import { sendOtp,verifyOtp } from "../controller/user/optController.js";
+import { createProductReview, getProductReview } from "../controller/user/productReviewController.js";
 
 
 const UserRouter = express.Router();
@@ -59,7 +60,11 @@ UserRouter.post("/user/farmer_detail", verifyToken, createFarmerDetail);
 
 // Add to Cart Route
 UserRouter.post("/user/cart/", verifyToken, createAddToCart);
-UserRouter.delete("/user/cart/:id", verifyToken,deleteAddToCart);
+UserRouter.delete("/user/cart/:id", deleteAddToCart);
+
+// Product Review Route
+UserRouter.post("/user/review", verifyToken, createProductReview);
+UserRouter.get("/user/review/:id", verifyToken,getProductReview);
 
 // Animal Farm Data Route
 //  Parent Routes

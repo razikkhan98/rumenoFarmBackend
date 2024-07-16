@@ -9,9 +9,9 @@ const UserSchema = mongoose.Schema({
   password:{ type: String, required: true },
   mobile:{ type: String,unique: true},
   address:{type: String, required: true},
-  city:{type: String, required: true},
-  state:{type: String, required: true},
-  country:{type: String, required: true},
+  city:{type: String,},
+  state:{type: String,},
+  country:{type: String,},
 });
 
 export const UserModel = mongoose.model("User", UserSchema);

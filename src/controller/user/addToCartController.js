@@ -28,8 +28,12 @@ export const getAddToCart = async (data) => {
 
 export const deleteAddToCart = async (req, res) => {
     try {
-    let data =  await AddToCart.deleteOne({id:Number(req.params.id)});
-    res.status(200).send("success");
+      let item = await AddToCart.findOne({uid:req.query.uid});
+      console.log('item: ', item);
+      if(item){
+        let data =  await AddToCart.deleteOne({id:Number(req.params.id)});
+        res.status(200).send("success");
+      }
     } catch (error) {
       console.log("error: ", error);
       res.status(400).send(error.message);

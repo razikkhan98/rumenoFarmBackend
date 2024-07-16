@@ -37,10 +37,10 @@ export const loginUser = async (data) => {
           sessionId: "sessionId"
         };
       } else {
-        return { status: 400, message: "password doesn't match" };
+        return { status: 404, message: "password doesn't match" };
       }
     } else {
-      return { status: 400, message: "User doesn't exist" };
+      return { status: 401, message: "Email and Password doesn't match!" };
     }
   } catch (error) {
     console.log(error);
