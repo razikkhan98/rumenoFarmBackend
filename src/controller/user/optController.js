@@ -9,39 +9,36 @@ const { TWILIO_SERVICE_SID, TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN } =
 
 const client = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
-// const transporter = nodemailer.createTransport({
-//   host: EMAIL_HOST,
-//   port: EMAIL_PORT,
-//   secure: false, // true for 465, false for other ports
-//   auth: {
-//     user: EMAIL_USER,
-//     pass: EMAIL_PASS,
-//   },
-// });
+const transporter = nodemailer.createTransport({
+  host: process.env.EMAIL_HOST,
+  port: process.env.EMAIL_PORT,
+  secure:true, // true for 465, false for other ports
+  auth:{
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
 
 export const sendOtp = async (req, res, next) => {
   const { countryCode, phoneNumber } = req.body;
   const emailOtp = Math.floor(100000 + Math.random() * 900000).toString();
   console.log('emailOtp: ', emailOtp);
   try {
-    const otpResponse = await client.verify.v2
-      .services(TWILIO_SERVICE_SID)
-      .verifications.create({
-        to: `+${countryCode}${phoneNumber}`,
-        channel: "sms",
-      });
+    // const otpResponse = await client.verify.v2
+    //   .services(TWILIO_SERVICE_SID)
+    //   .verifications.create({
+    //     to: `+${countryCode}${phoneNumber}`,
+    //     channel: "sms",
+    //   });
 
        // Send OTP via Email
-       // Send OTP via Email
-
-
-    // await transporter.sendMail({
-    //   from: `"Your App" <${EMAIL_USER}>`,
-    //   to: email,
-    //   subject: "Your OTP Code",
-    //   text: `Your OTP code is ${emailOtp}`,
-    //   html: `<p>Your OTP code is <strong>${emailOtp}</strong></p>`,
-    // });
+    await transporter.sendMail({
+      from: `"Your App" <${process.env.EMAIL_USER}>`,
+      to: "u1@mailinator.com",
+      subject: "Your OTP Code",
+      text: `Your OTP code is ${emailOtp}`,
+      html: `<p>Your OTP code is <strong>${emailOtp}</strong></p>`,
+    });
     console.log('transporter: ', transporter);
 
 
