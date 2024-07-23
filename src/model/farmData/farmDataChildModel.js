@@ -55,6 +55,6 @@ const UserSchema = new mongoose.Schema({
   kid_comment: {
     type: String,
   },
-});
+},{strict: false});
 
 export default mongoose.model("Child", UserSchema);
