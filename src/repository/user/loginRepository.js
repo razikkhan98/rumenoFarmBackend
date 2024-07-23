@@ -8,7 +8,7 @@ import { getAddToCart } from "../../controller/user/addToCartController.js";
 export const loginUser = async (data) => {
   try {
     // check if the user exists
-    const user = await UserModel.findOne({ email: data?.email });
+    const user = await UserModel.findOne({ mobile: data?.mobile });
     if (user) {
       //check if password matches
 
@@ -28,7 +28,7 @@ export const loginUser = async (data) => {
           message: "Login Successfully",
           token: token,
           uID: user?._id,
-          userName: user?.fullName,
+          userName: user?.firstName,
           // ----------NEW ADD
           date: '7/7/2027',
           FarmName:getFarmerDetailData,
@@ -40,7 +40,7 @@ export const loginUser = async (data) => {
         return { status: 404, message: "password doesn't match" };
       }
     } else {
-      return { status: 401, message: "Email and Password doesn't match!" };
+      return { status: 401, message: "Mobile Number and Password doesn't match!" };
     }
   } catch (error) {
     console.log(error);
