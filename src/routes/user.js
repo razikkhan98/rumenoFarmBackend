@@ -1,7 +1,5 @@
 import express from "express";
 import { UserRegistration } from "../controller/user/user.js";
-// import { fileParser } from "../controller/transactionController.js";
-// import transactionModel from "../model/transactionModel.js";
 import { createProductFeedback } from "../controller/user/productFeedbackController.js";
 import { createServiceForm } from "../controller/user/serviceFormController.js";
 import { createContactUs } from "../controller/user/contactController.js";
@@ -9,8 +7,7 @@ import { createBlog } from "../controller/user/blogController.js";
 import { createTransactionIssue } from "../controller/user/transactionIssueController.js";
 import {createAddToCart,deleteAddToCart,} from "../controller/user/addToCartController.js";
 import { UserLogin } from "../controller/user/loginController.js";
-import {upload,uploadImage,getImage} from "../controller/user/transactionController.js";
-import { dummylogin } from "../controller/user/dummylogin.js";
+import {createTransaction} from "../controller/user/transactionController.js";
 import { createParent, deleteParent, getParent, updateParent } from "../controller/farmData/farmDataParentController.js";
 import { createChild, deleteChild, getChild, updateChild } from "../controller/farmData/farmDataChildController.js";
 import { createMilk, deleteMilk, getMilk, updateMilk } from "../controller/farmData/farmDataMilkController.js";
@@ -19,28 +16,28 @@ import { createDeworm, deleteDeworm, getDeworm, updateDeworm } from "../controll
 import { createHeat, deleteHeat, getHeat, updateHeat } from "../controller/farmData/farmDataHeatController.js";
 import { createSanitation, deleteSanitation, getSanitation, updateSanitation } from "../controller/farmData/farmDataSanitationController.js";
 import { createWean, deleteWean, getWean, updateWean } from "../controller/farmData/farmDataWeanController.js";
-import { createFarmerDetail } from "../controller/farmData/FarmerDetailController.js";
+import { createFarmerDetail } from "../controller/farmData/farmerDetailController.js";
 import verifyToken from "../../src/middleware/user/verifyToken.js";
 import { forgetPassword } from "../controller/user/forgotPasswordController.js";
+import { sendOtp,verifyOtp } from "../controller/user/optController.js";
+import { createProductReview, getProductReview } from "../controller/user/productReviewController.js";
 
 
 const UserRouter = express.Router();
 
 // User Registration
-
 UserRouter.post("/user/register", UserRegistration);
 
 // User Login
-
 UserRouter.post("/user/login", UserLogin);
 UserRouter.post("/user/forgot_password", forgetPassword);
 
+// User OPT Vefication
+UserRouter.post("/user/send_otp", sendOtp);
+UserRouter.post("/user/verify_otp", verifyOtp);
 
 // Transaction Route
-
-UserRouter.post('/upload', upload.single('image'),uploadImage);
-
-UserRouter.get("/image",getImage)
+UserRouter.post('/user/transaction',verifyToken, createTransaction);
 
 
 // Feedback
@@ -63,12 +60,16 @@ UserRouter.post("/user/farmer_detail", verifyToken, createFarmerDetail);
 
 // Add to Cart Route
 UserRouter.post("/user/cart/", verifyToken, createAddToCart);
-UserRouter.delete("/user/cart/:id", verifyToken,deleteAddToCart);
+UserRouter.delete("/user/cart/:id", deleteAddToCart);
+
+// Product Review Route
+UserRouter.post("/user/review", verifyToken, createProductReview);
+UserRouter.get("/user/review/:id", verifyToken,getProductReview);
 
 // Animal Farm Data Route
 //  Parent Routes
-UserRouter.post('/user/farm_data/parent', verifyToken, createParent);
-UserRouter.get('/user/farm_data/parent/:id', verifyToken, getParent);
+UserRouter.post('/user/farm_data/parent',  createParent);
+UserRouter.get('/user/farm_data/parent/:id',  getParent);
 UserRouter.put('/user/farm_data/parent/:id', verifyToken, updateParent);
 UserRouter.delete('/user/farm_data/parent/:id', verifyToken, deleteParent);
 
@@ -114,7 +115,5 @@ UserRouter.get('/user/farm_data/wean/:id', verifyToken, getWean);
 UserRouter.put('/user/farm_data/wean/:id', verifyToken, updateWean);
 UserRouter.delete('/user/farm_data/wean/:id', verifyToken, deleteWean);
 
-// dummy login api routes
-UserRouter.post("/login", dummylogin);
 
 export default UserRouter;

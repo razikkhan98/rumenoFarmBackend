@@ -16,14 +16,15 @@ export const addUser = async (data) => {
         else {
             return {
                 status : 400, 
-                message : "user already exists"
+                message : "email already exists"
             }
         }
-    } catch (error) {
-        console.log(error)
-        return {
-            status : 500, 
-            message : "something went wrong"
+    } catch (error) {   
+        if(error.keyPattern){
+            return {
+                status : 500, 
+                message : "mobile number already exists"
+            }
         }
     }
 }
