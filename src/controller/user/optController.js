@@ -32,6 +32,9 @@ export const sendOtp = async (req, res, next) => {
       });
 
        // Send OTP via Email
+       // Send OTP via Email
+
+
     // await transporter.sendMail({
     //   from: `"Your App" <${EMAIL_USER}>`,
     //   to: email,
