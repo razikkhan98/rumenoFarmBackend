@@ -13,6 +13,7 @@ const UserSchema = mongoose.Schema({
   city:{type: String,},
   state:{type: String,},
   country:{type: String,},
+  otp:{type: String, default:""}
 });
 
 export const UserModel = mongoose.model("User", UserSchema);

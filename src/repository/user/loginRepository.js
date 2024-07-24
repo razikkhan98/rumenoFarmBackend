@@ -1,8 +1,8 @@
-import { UserModel } from "../../model/user/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { getFarmerDetail } from "../../controller/farmData/farmerDetailController.js";
 import { getAddToCart } from "../../controller/user/addToCartController.js";
+import { UserModel } from "../../model/user/user.js";
 
 
 export const loginUser = async (data) => {
