@@ -6,7 +6,6 @@ import { createContactUs } from "../controller/user/contactController.js";
 import { createBlog } from "../controller/user/blogController.js";
 import { createTransactionIssue } from "../controller/user/transactionIssueController.js";
 import {createAddToCart,deleteAddToCart,} from "../controller/user/addToCartController.js";
-import { UserLogin } from "../controller/user/loginController.js";
 import {createTransaction} from "../controller/user/transactionController.js";
 import { createParent, deleteParent, getParent, updateParent } from "../controller/farmData/farmDataParentController.js";
 import { createChild, deleteChild, getChild, updateChild } from "../controller/farmData/farmDataChildController.js";
@@ -21,6 +20,7 @@ import verifyToken from "../../src/middleware/user/verifyToken.js";
 import { forgetPassword } from "../controller/user/forgotPasswordController.js";
 import { sendOtp,verifyOtp } from "../controller/user/optController.js";
 import { createProductReview, getProductReview } from "../controller/user/productReviewController.js";
+import { UserLogin } from "../controller/user/LoginController.js";
 
 
 const UserRouter = express.Router();
