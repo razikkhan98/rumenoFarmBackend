@@ -7,9 +7,14 @@ import cors from "cors";
 
 const app = express();
 
+const corsMethod = {
+  origin: '*', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+};
+
 Dbconnection();
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(corsMethod));
 app.use("/api", UserRouter);
 app.use(express.urlencoded({ extended: true }));
 
