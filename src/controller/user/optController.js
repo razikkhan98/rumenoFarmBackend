@@ -23,6 +23,14 @@ export const sendOtp = async (req, res, next) => {
   const { countryCode, phoneNumber } = req.body;
   const emailOtp = Math.floor(100000 + Math.random() * 900000).toString();
   try {
+    // check if mobile number already exists
+    const user = await UserModel.findOne({ mobile: phoneNumber });
+    if (!user) {
+      return res.send({
+        status: 400,
+        message: "This number is not registered",
+      });
+    }
     //  send otp to mobile
     const otpResponse = await client.verify.v2
       .services(TWILIO_SERVICE_SID)
@@ -33,7 +41,6 @@ export const sendOtp = async (req, res, next) => {
 
     // Send OTP via Email
     let sendToEmail = await UserModel.findOne({ mobile: req.body.phoneNumber });
-    console.log('sendToEmail: ', sendToEmail.email);
     if (sendToEmail) {
       sendToEmail.otp = emailOtp;
       await sendToEmail.save();
@@ -42,11 +49,14 @@ export const sendOtp = async (req, res, next) => {
     await transporter.sendMail({
       from: `"Your App" <${process.env.EMAIL_USER}>`,
       to: sendToEmail.email,
-      subject: "Your OTP Code",
+      subject: "Rumeno OTP",
       text: `Your OTP code is ${emailOtp}`,
-      html: `<p>Your OTP code is <strong>${emailOtp}</strong></p>`,
+      html: `<h3>Your OTP is <h1>${emailOtp}</h1></h3>
+      <h4>Please use this code to reset your password. This OTP is valid for the next 60 second. Do not share this code with anyone.</h4>
+      <br>
+      <h4>Thank you,</h4>
+      <h1>Rumeno</h1>`,
     });
-    console.log("transporter: ", transporter);
 
     res.send({
       status: 200,
