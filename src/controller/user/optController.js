@@ -70,6 +70,7 @@ export const sendOtp = async (req, res, next) => {
 
 export const verifyOtp = async (req, res, next) => {
   const { countryCode, phoneNumber, otp } = req.body;
+  console.log('req.body: ', req.body);
   try {
     // verify email otp
     const verifyEmailOtp = await UserModel.findOne({
@@ -78,14 +79,16 @@ export const verifyOtp = async (req, res, next) => {
     });
     if (!verifyEmailOtp) {
       const verifiedResponse = await client.verify.v2
-        .services(TWILIO_SERVICE_SID)
-        .verificationChecks.create({
-          to: `+${countryCode}${phoneNumber}`,
-          code: otp,
-        });
+      .services(TWILIO_SERVICE_SID)
+      .verificationChecks.create({
+        to: `+${countryCode}${phoneNumber}`,
+        code: otp,
+      });
     }
+    console.log('verifiedResponse: ', verifiedResponse);
     res.send({ status: 200, message: "OTP verified successfully" });
   } catch (error) {
+    console.log('error: ', error);
     res
       .status(error?.status || 400)
       .send(error?.message || "Something went wrong!");
