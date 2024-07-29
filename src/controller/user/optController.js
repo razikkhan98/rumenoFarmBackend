@@ -85,7 +85,6 @@ export const verifyOtp = async (req, res, next) => {
         code: otp,
       });
     }
-    console.log('verifiedResponse: ', verifiedResponse);
     res.send({ status: 200, message: "OTP verified successfully" });
   } catch (error) {
     console.log('error: ', error);
