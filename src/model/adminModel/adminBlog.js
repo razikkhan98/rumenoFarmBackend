@@ -9,6 +9,16 @@ const Schema = new mongoose.Schema(
     keywords: {
       type: Array,
     },
+    image: {
+      type: String,
+    },
+    heading: {
+      type: String,
+    },
+    description: {
+      type: String,
+    },
+
   },
   { timestamps: true }
 );
