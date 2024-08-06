@@ -8,6 +8,7 @@ import { createTransactionIssue } from "../controller/user/transactionIssueContr
 import {
   createAddToCart,
   deleteAddToCart,
+  getCartData,
 } from "../controller/user/addToCartController.js";
 import { createTransaction } from "../controller/user/transactionController.js";
 import {
@@ -117,8 +118,9 @@ UserRouter.post("/user/transaction_issue", verifyToken, createTransactionIssue);
 UserRouter.post("/user/farmer_detail", verifyToken, createFarmerDetail);
 
 // Add to Cart Route
-UserRouter.post("/user/cart/", verifyToken, createAddToCart);
+UserRouter.post("/user/cart",  createAddToCart);
 UserRouter.delete("/user/cart/:id", deleteAddToCart);
+UserRouter.get("/user/cart/:id", getCartData);
 
 // Product Review Route
 UserRouter.post("/user/review", verifyToken, createProductReview);
