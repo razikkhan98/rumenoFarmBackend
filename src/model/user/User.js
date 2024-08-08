@@ -7,12 +7,12 @@ const UserSchema = mongoose.Schema({
   firstName:{ type: String, required: true },
   lastName:{ type: String},
   email:{ type: String, required: true, unique: true },
-  password:{ type: String, required: true },
-  mobile:{ type: String,unique: true},
-  address:{type: String, required: true},
-  city:{type: String,},
-  state:{type: String,},
-  country:{type: String,},
+  password:{ type: String },
+  mobile:{ type: String},
+  address:{type: String},
+  city:{type: String},
+  state:{type: String},
+  country:{type: String},
   otp:{type: String, default:""}
 });
 
