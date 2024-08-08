@@ -82,6 +82,7 @@ import {
   getBlogById,
   updateBlog,
 } from "../controller/adminController/adminBlogController.js";
+import { UserGoogleLogin } from "../repository/user/loginRepository.js";
 
 const UserRouter = express.Router();
 
@@ -90,6 +91,7 @@ UserRouter.post("/user/register", UserRegistration);
 
 // User Login
 UserRouter.post("/user/login", UserLogin);
+UserRouter.post("/user/google_login", UserGoogleLogin);
 UserRouter.post("/user/forgot_password", forgetPassword);
 
 // User OPT Vefication
