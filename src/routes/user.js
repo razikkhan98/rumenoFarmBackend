@@ -10,7 +10,7 @@ import {
   deleteAddToCart,
   getCartData,
 } from "../controller/user/addToCartController.js";
-import { createTransaction } from "../controller/user/transactionController.js";
+import { createTransaction, getTransaction } from "../controller/user/transactionController.js";
 import {
   createParent,
   deleteParent,
@@ -100,12 +100,13 @@ UserRouter.post("/user/verify_otp", verifyOtp);
 
 // Transaction Route
 UserRouter.post("/user/transaction", verifyToken, createTransaction);
+UserRouter.get("/user/transaction",  getTransaction);
 
 // Feedback
 UserRouter.post("/user/feedback", verifyToken, createProductFeedback);
 
 // Service Page Route
-UserRouter.post("/user/service_form", verifyToken, createServiceForm);
+UserRouter.post("/user/service_form", createServiceForm);
 
 // Contact Us Route
 UserRouter.post("/user/contact_us", verifyToken, createContactUs);
