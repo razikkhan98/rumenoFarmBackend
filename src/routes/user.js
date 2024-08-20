@@ -10,7 +10,7 @@ import {
   deleteAddToCart,
   getCartData,
 } from "../controller/user/addToCartController.js";
-import { createTransaction } from "../controller/user/transactionController.js";
+import { createTransaction, getTransaction } from "../controller/user/transactionController.js";
 import {
   createParent,
   deleteParent,
@@ -83,6 +83,7 @@ import {
   updateBlog,
 } from "../controller/adminController/adminBlogController.js";
 import { UserGoogleLogin } from "../repository/user/loginRepository.js";
+import { getDashboardDetails } from "../controller/adminController/adminDashboard.js";
 
 const UserRouter = express.Router();
 
@@ -100,12 +101,13 @@ UserRouter.post("/user/verify_otp", verifyOtp);
 
 // Transaction Route
 UserRouter.post("/user/transaction", verifyToken, createTransaction);
+UserRouter.get("/user/transaction",  getTransaction);
 
 // Feedback
 UserRouter.post("/user/feedback", verifyToken, createProductFeedback);
 
 // Service Page Route
-UserRouter.post("/user/service_form", verifyToken, createServiceForm);
+UserRouter.post("/user/service_form", createServiceForm);
 
 // Contact Us Route
 UserRouter.post("/user/contact_us", verifyToken, createContactUs);
@@ -114,7 +116,7 @@ UserRouter.post("/user/contact_us", verifyToken, createContactUs);
 UserRouter.post("/user/blog", verifyToken, createBlog);
 
 // Transaction Issue Route
-UserRouter.post("/user/transaction_issue", verifyToken, createTransactionIssue);
+UserRouter.post("/user/transaction_issue", createTransactionIssue);
 
 // Farmer Details Route
 UserRouter.post("/user/farmer_detail", verifyToken, createFarmerDetail);
@@ -196,5 +198,9 @@ UserRouter.get("/admin/get_all_blog", getAllBlog);
 UserRouter.get("/admin/get_blog/:id", getBlogById);
 UserRouter.put("/admin/update_blog/:id", updateBlog);
 UserRouter.delete("/admin/delete_blog/:id", deleteBlog);
+
+// Dashboard routes
+
+UserRouter.get("/admin/dashboard", getDashboardDetails);
 
 export default UserRouter;

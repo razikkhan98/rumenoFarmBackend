@@ -44,6 +44,10 @@ const UserSchema = new mongoose.Schema({
     // required: true
   }
  
-});
+},
+{
+  timestamps:true,
+}
+);
 
 export default mongoose.model("Transaction", UserSchema);

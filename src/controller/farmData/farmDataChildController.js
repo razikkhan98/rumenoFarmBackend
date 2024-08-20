@@ -10,7 +10,6 @@ export const createChild = async (req, res) => {
 };
 
 export const getChild = async (req, res) => {
-  console.log('req: ', req.body);
   try {
     const user = await Child.find({parentid:req.params.id});
     res.send(user);

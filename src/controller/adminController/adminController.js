@@ -1,7 +1,6 @@
 import adminProduct from "../../model/adminModel/adminProduct.js";
 
 export const createProduct = async (req, res, next) => {
-  console.log('req: ', req.body);
   try {
     const product = await adminProduct.create(req?.body);
 
