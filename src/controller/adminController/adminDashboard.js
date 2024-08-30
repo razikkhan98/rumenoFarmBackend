@@ -1,9 +1,7 @@
 import transaction from "../../model/user/transactionModel.js";
 
-
 export const getDashboardDetails = async (req, res) => {
   try {
-
     // total transactions
     const startDate = new Date();
     startDate?.setDate(startDate?.getDate() - 7);
@@ -19,7 +17,6 @@ export const getDashboardDetails = async (req, res) => {
     for (let index = 0; index < TotalTransaction?.length; index++) {
       Total += TotalTransaction[index]?.amount;
     }
-    
 
     // last 6 month transaction
     const results = [];
@@ -45,53 +42,62 @@ export const getDashboardDetails = async (req, res) => {
       displayDate.setDate(displayDate.getDate() + 1);
 
       results.push({
-        date: displayDate.toISOString().split("T")[0],
+        date: new Intl.DateTimeFormat('en', { month: 'short' }).format(displayDate),
         totalAmount,
       });
     }
 
     // lastest transaction
-    const latestTransaction = await transaction.find().sort({ _id: -1 }).limit(1);
-    
-    
+    const latestTransaction = await transaction
+    .find()
+    .sort({ _id: -1 })
+    .limit(1);
+
+
     // total sales
-    const collections = await transaction.find({})
+    const collections = await transaction.find({});
     let numberOfCollections = 0;
     for (let index = 0; index < collections.length; index++) {
-        numberOfCollections += collections[index].cart.length        
+      numberOfCollections += collections[index].cart.length;
     }
     // console.log('numberOfCollections: ', numberOfCollections);
-    
+
     // barGraph Data
-    const barGraphData = await transaction.find({})
-    let numberOfbarGraphData;
+    const barGraphData = await transaction.find({});
+    const counter = {};
     let bar;
+    let newArray = [];
     let graph;
     for (let index = 0; index < barGraphData.length; index++) {
-         graph = barGraphData[index].cart
-         console.log('graph: ', graph.length);
-        for (let index = 0; index < graph.length; index++) {
-            bar = graph[index]?.name
-            console.log('bar: ', bar);
-        }
-        //  numberOfbarGraphData  = barGraphData[index].cart[index]?.name       
-        //  console.log('numberOfbarGraphData: ', numberOfbarGraphData);
-        }
-        // console.log('barGraphData[index].cart: ', numberOfbarGraphData);
-
-
+      graph = barGraphData[index].cart;
+      for (let index = 0; index < graph.length; index++) {
+        bar = graph[index]?.name;
+        newArray.push(bar);
+      }
+    }
+    newArray.forEach((ele) => {
+      if (counter[ele]) {
+        counter[ele] += 1;
+      } else {
+        counter[ele] = 1;
+      }
+    });
+    const graphData = Object.keys(counter).map((key) => {
+      return {
+        name: key.split(" ")[0],
+        Products:counter[key],
+      };
+    });
     
-
-
-
+    console.log(graphData);
 
     res.send({
-        // sixMonth:results,
-        // lastTransaction:latestTransaction,
-        // totalsale:numberOfCollections,
-        // totalPayment:Total,
-        bar : bar,
-        graph:graph
+      sixMonth:results,
+      lastTransaction:latestTransaction[0]?.amount,
+      totalsale:numberOfCollections,
+      totalPayment:Total,
+        bargraph:graphData,
+        // piechart:piechart,
 
     });
   } catch (error) {

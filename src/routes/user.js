@@ -200,7 +200,6 @@ UserRouter.put("/admin/update_blog/:id", updateBlog);
 UserRouter.delete("/admin/delete_blog/:id", deleteBlog);
 
 // Dashboard routes
-
 UserRouter.get("/admin/dashboard", getDashboardDetails);
 
 export default UserRouter;

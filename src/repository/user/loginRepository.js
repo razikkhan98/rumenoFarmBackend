@@ -84,6 +84,8 @@ export const UserGoogleLogin = async (req, res) => {
 
     let user = await UserModel.findOne({ email });
 
+
+    
     if (!user) {
       user = await UserModel.create(req?.body);
     }
