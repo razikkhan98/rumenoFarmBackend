@@ -199,7 +199,7 @@ UserRouter.get("/admin/get_blog/:id", getBlogById);
 UserRouter.put("/admin/update_blog/:id", updateBlog);
 UserRouter.delete("/admin/delete_blog/:id", deleteBlog);
 
-// Dashboard routes
+// Admin Dashboard routes
 UserRouter.get("/admin/dashboard", getDashboardDetails);
 
 export default UserRouter;

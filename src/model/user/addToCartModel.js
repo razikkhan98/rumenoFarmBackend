@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
 
+const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 const UserSchema = new mongoose.Schema({
   id: {
-    type: Number,
+    type: ObjectId,
     required: true,
   },
   amount: {
@@ -25,6 +27,11 @@ const UserSchema = new mongoose.Schema({
     type: Array,
     // required: true,
   },
+  stock: {
+    type: Number,
+    // required: true,
+  },
+
 });
 
 export default mongoose.model("AddToCart", UserSchema);

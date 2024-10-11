@@ -65,10 +65,13 @@ const Schema = new mongoose.Schema(
     },
 
     script: {
-      type: String,
+      type: Array,
     },
     video: {
       type: String,
+    },
+    stock: {
+      type: Number,
     },
   },
   { timestamps: true }
